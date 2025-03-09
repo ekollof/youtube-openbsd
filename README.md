@@ -4,6 +4,7 @@
 
 A script that records your screen and your audio, and which is xrand aware.
 
+```
 Usage: screen-record.ksh [-s screen] [-l] [-h] [-c config] [-b bitrate] [-n] [-d] [-m]
   -s screen   Select screen number (0, 1, 2, etc.)
   -l         List available screens
@@ -14,10 +15,11 @@ Usage: screen-record.ksh [-s screen] [-l] [-h] [-c config] [-b bitrate] [-n] [-d
   -d         Enable noise suppression on mic input
   -m         Measure ambient noise to tune noise gate (requires -n)
 Press 'q' or Ctrl+C to stop streaming cleanly.
-
+```
 
 ## VM manare for OpenBSD VMM
 
+```
 Usage: vm_manager.sh {create|clone|import|give|take|list|start|stop|archive|delete} [options]
   Must be root or use doas
   Requires curl (pkg_add curl)
@@ -34,6 +36,7 @@ Usage: vm_manager.sh {create|clone|import|give|take|list|start|stop|archive|dele
   archive <vm_name> - Archive VM to /var/vmm/archive
   delete <vm_name> - Delete archived VM
   NOTE: Rocky unsupported by vmd
+```
 
 TODO:
 - Add ability to install from custom ISOs
