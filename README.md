@@ -37,4 +37,6 @@ Usage: vm_manager.sh {create|clone|import|give|take|list|start|stop|archive|dele
 
 TODO:
 - Add ability to install from custom ISOs
+- Rename VMs
+- Add IPv6 support
 
