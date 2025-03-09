@@ -26,7 +26,9 @@ Usage: screen-record.ksh [-s screen] [-l] [-h] [-c config] [-b bitrate] [-n] [-d
 Press 'q' or Ctrl+C to stop streaming cleanly.
 ```
 
-## VM manare for OpenBSD VMM
+## VM manager for OpenBSD VMM
+
+Sets up and manages VMM vms for you. It's a wrapper around the vmd(8) command.
 
 ```
 Usage: vm_manager.sh {create|clone|import|give|take|list|start|stop|archive|delete} [options]
