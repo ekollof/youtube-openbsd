@@ -1,8 +1,17 @@
-# Andrath's scripts for youtube.
+# Andrath's OpenBSD tools for youtube.
+
+## What is this?
+
+These are little projects I mentioned or have built for youtube videos and/or
+streams.
+
+These scripts/programs are primarily for OpenBSD only, and probably might not
+work on your loonix. Your mileage may vary.
+
 
 ## Screen recorder
 
-A script that records your screen and your audio, and which is xrand aware.
+A script that records your screen and your audio, and which is xrandr aware.
 
 ```
 Usage: screen-record.ksh [-s screen] [-l] [-h] [-c config] [-b bitrate] [-n] [-d] [-m]
