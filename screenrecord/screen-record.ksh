@@ -215,11 +215,6 @@ while getopts "s:lhc:b:ndm" opt; do
             ;;
         b)
             BITRATE=${OPTARG}
-            # Validate bitrate is a positive integer
-            if ! echo "$BITRATE" | grep -q '^[0-9]\+$'; then
-                echo "Error: Bitrate must be a positive integer (e.g., 8000)" >&2
-                exit 1
-            fi
             ;;
         n)
             NOISE_GATE="yes"
