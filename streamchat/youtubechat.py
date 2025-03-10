@@ -39,13 +39,11 @@ class YouTubeChatBot:
         
         # Authenticate and build YouTube API client
         self.youtube = self.authenticate()
-        self.live_chat_id = self.get_live_chat_id()
-        if not self.live_chat_id:
-            print(f"{Fore.RED}Error: Could not find active live chat{Style.RESET_ALL}")
-            exit(1)
+        self.live_chat_id = self.wait_for_live_chat()
 
     def authenticate(self):
         """Authenticate with YouTube API using OAuth 2.0"""
+        print(f"{Fore.YELLOW}Authenticating with YouTube API...{Style.RESET_ALL}")
         flow = InstalledAppFlow.from_client_secrets_file(self.client_secret_file, SCOPES)
         credentials = flow.run_local_server(port=0)
         return build('youtube', 'v3', credentials=credentials)
@@ -66,6 +64,18 @@ class YouTubeChatBot:
         except HttpError as e:
             print(f"{Fore.RED}Error fetching live chat ID: {str(e)}{Style.RESET_ALL}")
             return None
+
+    def wait_for_live_chat(self):
+        """Poll until an active live chat is found"""
+        print(f"{Fore.YELLOW}Waiting for an active live chat...{Style.RESET_ALL}")
+        while True:
+            live_chat_id = self.get_live_chat_id()
+            if live_chat_id:
+                clear_screen()  # Clear screen when live chat is found
+                print(f"{Fore.GREEN}Live chat found! Connected to YouTube live chat{Style.RESET_ALL}")
+                return live_chat_id
+            print(f"{Fore.YELLOW}No active live chat found. Retrying in 10 seconds...{Style.RESET_ALL}")
+            time.sleep(10)  # Poll every 10 seconds
 
     async def fetch_messages(self, last_message_id=None):
         """Fetch new messages from the live chat"""
@@ -152,9 +162,6 @@ async def main():
     
     signal.signal(signal.SIGINT, signal_handler)
     
-    # Clear screen after successful authentication and connection
-    clear_screen()
-    print(f"{Fore.GREEN}Connected to YouTube live chat{Style.RESET_ALL}")
     print(f"{Fore.CYAN}Type your messages below (type 'quit' or Ctrl+C to exit immediately){Style.RESET_ALL}")
     print("-" * 50)
     
